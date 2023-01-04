@@ -1,12 +1,9 @@
+//@ts-nocheck
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { HiMenu } from "react-icons/hi";
 import MobileNav from "./MobileNav";
 import Navbar from "./Navbar";
-
-
-
-
 
 const Header = () => {
   const [color, setColor] = useState("transparent");
@@ -29,28 +26,30 @@ const Header = () => {
   return (
     <header
       style={{ backgroundColor: `${color}` }}
-      className="fixed left-0 top-0 w-full z-10 ease-in duration-30"
+      className="fixed top-0 left-0 z-50 w-full ease-in duration-30"
     >
-      <div className="container mx-auto p-3 w-full">
-        <div className="flex px-2 md:px-10 items-center justify-between">
+      <div className="container w-full p-3 mx-auto">
+        <div className="flex items-center justify-between px-2 md:px-10">
           <Link href={"/"}>
-            <h1 style={{ color: `${textColor}` }} className="text-2xl text-white font-semibold cursor-pointer">Photography</h1>
+            <h1
+              style={{ color: `${textColor}` }}
+              className="text-2xl font-semibold text-white cursor-pointer w-fit"
+            >
+              Photography
+            </h1>
           </Link>
 
           <Navbar />
 
           {/* mobile nav functionality */}
-          <HiMenu
-            onClick={() => setNavMobile(true)}
-            className="md:hidden text-white text-3xl cursor-pointer"
-          />
+          <button onClick={() => setNavMobile(true)}>
+            <HiMenu className="text-3xl text-white cursor-pointer md:hidden" />
+          </button>
 
-          <div className={`${navMobile ? "-right-0" : "-right-full"} toggle `}>
+          <div className={`${navMobile ? "right-0" : "-right-full"} toggle `}>
             <MobileNav setNavMobile={setNavMobile} />
           </div>
-
           {/* mobile nav ends here */}
-
         </div>
       </div>
     </header>
